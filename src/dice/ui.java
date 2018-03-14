@@ -1,4 +1,6 @@
 package dice;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ui {
@@ -23,7 +25,33 @@ public class ui {
         
         switch (input) {
             case 1:
-                System.out.println("\n Lock target/targets number:");
+                System.out.println("\nLock element number:");
+                System.out.print("> ");
+                input = scan.nextInt();
+                
+                while (input < 0 || input > 4) {
+                    System.out.println("\n=> OUT OF RANGE, TRY AGAIN!\n");
+                    System.out.print("> ");
+                    input = scan.nextInt();
+                }
+                
+                switch (input) {
+                    case 1:
+                        first.lock();
+                    break;
+                    case 2:
+                        second.lock();
+                    break;
+                    case 3:
+                        third.lock();
+                    break;
+                }
+                
+                System.out.println("\n=> ELEMENT #" + input + " LOCKED!\n");
+            break;
+            
+            case 2:
+                System.out.println("\nUnlock element number:");
                 System.out.print("> ");
                 input = scan.nextInt();
                 
@@ -35,33 +63,42 @@ public class ui {
                 
                 switch (input) {
                     case 1:
-                        first.change();
+                        first.unlock();
                     break;
                     case 2:
-                        second.change();
+                        second.unlock();
                     break;
                     case 3:
-                        third.change();
+                        third.unlock();
                     break;
                 }
                 
-                System.out.println("Target Locked!\n");
-                ui.question(first, second, third);
-            break;
-            
-            case 2:
-                System.out.println("Unlock target/targets number:");
+                System.out.println("\n=> ELEMENT #" + input + " UNLOCKED!\n");
             break;
             
             case 3:
-                System.out.println("Reroll Initialized");
+                ArrayList<roll> lista = new ArrayList(Arrays.asList(first, second, third));
+                
+                for (int x = 0; x < lista.size(); x++) {
+                    if (lista.get(x).status() == false) {
+                        lista.get(x).reroll();
+                    }
+                }
+                
+                System.out.println("\n=> UNLOCKED ELEMENTS REROLLED!\n");
+            break;
+            
+            case 4:
+                System.out.println("\n=> APPLICATION KILLED!");
+                System.exit(0);
             break;
             
             default:
-                System.out.println("Command not Found.");
+                System.out.println("\n=> Command not Found. Try again.\n");
             break;
         }
         
+        ui.question(first, second, third); 
     }
     
 }

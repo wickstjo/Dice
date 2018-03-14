@@ -13,15 +13,19 @@ public class roll {
         this.value = (int) (Math.random() * (6 - 1)) + 1;
     }
     
-    public void change() {
+    public void lock() {
         this.locked = true;
+    }
+    
+    public void unlock() {
+        this.locked = false;
     }
     
     public int value() {
         return this.value;
     }
     
-    public boolean locked() {
+    public boolean status() {
         return this.locked;
     }
 }

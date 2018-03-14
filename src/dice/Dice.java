@@ -3,11 +3,9 @@ package dice;
 public class Dice {
     public static void main(String[] args) {
         
-        roll first = new roll();
-        roll second = new roll();
-        roll third = new roll();
+        game game = new game();
+        ui ui = new ui(game);
         
-        ui.question(first, second, third);
-        
+        ui.bundle();
     }
 }

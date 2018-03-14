@@ -1,16 +1,20 @@
 package dice;
 
 public class game {
-    int turnsLeft;
-    roll first;
-    roll second;
-    roll third;
+    private int turnsLeft;
+    private roll first;
+    private roll second;
+    private roll third;
     
     public game() {
         this.turnsLeft = 10;
         this.first = new roll();
         this.second = new roll();
         this.third = new roll();
+    }
+    
+    public int turnsLeft() {
+        return this.turnsLeft;
     }
     
     public void subtractTurn() {
